@@ -8,6 +8,7 @@ const port = 3000;
 
 const apiRoutes = require('./routes');
 
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

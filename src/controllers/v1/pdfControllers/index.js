@@ -9,11 +9,7 @@ const handleUploadPdf = async (req, res) => {
     return res.status(400).json(ApiResponse.error("No file uploaded"));
   }
   const { message, data } = await pdfService.pdfService(req.file);
-  fs.unlink(req.file.path, (err) => {
-    if (err) {
-      console.log(`Error while removing the pdf file ${err.message}`);
-    }
-  });
+  fs.unlinkSync(req.file.path);
   if (!data) {
     return res.status(500).json(ApiResponse.error(message));
   }
